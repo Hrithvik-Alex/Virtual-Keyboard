@@ -15,7 +15,7 @@ class KeyBoard extends Component{
   constructor(props) {
     super(props);
     this.state = {
-        buttons: Array(63).fill(null)
+        buttons: Array(63).fill(null),
     }
   }
   
@@ -47,19 +47,31 @@ class KeyBoard extends Component{
   }
 
   renderButton(i) {
-    return (
-      <Button 
+    if(i == 13){
+      return (
+        <Button 
+        value={this.state.buttons[i]}
+        onClick={() => this.handleClick(i)}
+        width={this.s} 
+        />
+      )
+    }
+    else { 
+      return (
+        <Button 
         value={this.state.buttons[i]}
         onClick={() => this.handleClick(i)} 
         />
-    )
+      
+      )
+    }
   }
 
   render() {
     this.keyInit();
 
     return (
-      <div>
+      <div className="container">
         <div className="board-row">
           {this.renderButton(0)}
           {this.renderButton(1)}
@@ -153,31 +165,5 @@ class Project extends Component{
     )
   }
 }
-
-
-
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>ok</code> and wtf to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//         </header>
-//       </div>
-//     );
-//   }
-// }
 
 export default Project;
