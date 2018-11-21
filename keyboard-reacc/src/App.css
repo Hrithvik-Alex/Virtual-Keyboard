@@ -1,4 +1,4 @@
-.App {
+  .App {
   text-align: center;
 }
 
@@ -28,7 +28,7 @@
   color: #61dafb;
   float: left;
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 34px;
   height: 34px;
@@ -36,7 +36,7 @@
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 90px;
+  width: 80px;
   height: 160px;
 }
 

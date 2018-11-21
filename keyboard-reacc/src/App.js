@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-
-function Button(props) {
-  return (
-    <button className="button" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
+import Button from './Button'; 
 
 class KeyBoard extends Component{
   constructor(props) {
@@ -46,111 +38,56 @@ class KeyBoard extends Component{
     console.log("YEET U CLICKED " + this.state.buttons[i]);
   }
 
+  renderStuff() {
+    return array.map((item, i) => {
+      let flag = false;
+      if (i == 14 || i == 28 || i == 41 || i == 53) {
+        flag = true;
+      }
+      return (
+        flag ? </div><div className="board-row"> {this.renderButton(i)}
+        :
+        {this.renderButton(i)};
+      )
+    })
+  }
+
+_onMouseMove(e) {
+  const { screenX, screenY } = e;
+  console.log(`x: ${screenX} y: ${screenY}`);
+  }
+  
+
   renderButton(i) {
-    if(i == 13){
+    let width = null;
+    let height = null;
+    switch(i) {
+      case 13: case 14: case 28: case 41: case 52:
+        width = 160;
+        break;
+    }
       return (
         <Button 
         value={this.state.buttons[i]}
         onClick={() => this.handleClick(i)}
-        width={this.s} 
-        />
-      )
-    }
-    else { 
-      return (
-        <Button 
-        value={this.state.buttons[i]}
-        onClick={() => this.handleClick(i)} 
+        width={width}
+        height={height}
         />
       
       )
     }
-  }
+  
 
   render() {
     this.keyInit();
 
     return (
-      <div className="container">
+      <div className="container" onMouseMove={this._onMouseMove.bind(this)}>
         <div className="board-row">
-          {this.renderButton(0)}
-          {this.renderButton(1)}
-          {this.renderButton(2)}
-          {this.renderButton(3)}
-          {this.renderButton(4)}
-          {this.renderButton(5)}
-          {this.renderButton(6)}
-          {this.renderButton(7)}
-          {this.renderButton(8)}
-          {this.renderButton(9)}
-          {this.renderButton(10)}
-          {this.renderButton(11)}
-          {this.renderButton(12)}
-          {this.renderButton(13)}
-        </div>
-        <div className="board-row">
-          {this.renderButton(14)}
-          {this.renderButton(15)}
-          {this.renderButton(16)}
-          {this.renderButton(17)}
-          {this.renderButton(18)}
-          {this.renderButton(19)}
-          {this.renderButton(20)}
-          {this.renderButton(21)}
-          {this.renderButton(22)}
-          {this.renderButton(23)}
-          {this.renderButton(24)}
-          {this.renderButton(25)}
-          {this.renderButton(26)}
-          {this.renderButton(27)}
-        </div>
-        <div className="board-row">
-          {this.renderButton(28)}
-          {this.renderButton(29)}
-          {this.renderButton(30)}
-          {this.renderButton(31)}
-          {this.renderButton(32)}
-          {this.renderButton(33)}
-          {this.renderButton(34)}
-          {this.renderButton(35)}
-          {this.renderButton(36)}
-          {this.renderButton(37)}
-          {this.renderButton(38)}
-          {this.renderButton(39)}
-          {this.renderButton(40)}
-        </div>
-        <div className="board-row">
-          {this.renderButton(41)}
-          {this.renderButton(42)}
-          {this.renderButton(43)}
-          {this.renderButton(44)}
-          {this.renderButton(45)}
-          {this.renderButton(46)}
-          {this.renderButton(47)}
-          {this.renderButton(48)}
-          {this.renderButton(49)}
-          {this.renderButton(50)}
-          {this.renderButton(51)}
-          {this.renderButton(52)}
-        </div>
-        <div className="board-row">
-          {this.renderButton(53)}
-          {this.renderButton(54)}
-          {this.renderButton(55)}
-          {this.renderButton(56)}
-          {this.renderButton(57)}
-          {this.renderButton(58)}
-          {this.renderButton(59)}
-          <div className="board-column">
-            {this.renderButton(60)}
-            {this.renderButton(61)}
-          </div>
-          {this.renderButton(62)}
-        </div>
+          {renderStuff()};
       </div>
-    )
+    )}
     
-  }
 
 }
 
