@@ -50,11 +50,13 @@
   display: table;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid {
+  display: grid;
 }
+
+#downButton {
+  position: absolute;
+  top: 716px;
+  left: 1042px;
+}
+
