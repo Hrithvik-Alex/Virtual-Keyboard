@@ -172,14 +172,13 @@ class KeyBoard extends Component{
 /* This portion of the code will handle the logic behind handling normal keyboard and swipe functionality. */
 
 
- _onMouseMove(e) {
+ _onMousemove(e) {
   const { screenX, screenY } = e;
   let buttonIndex = this.whichButton(screenX, screenY);
   let button = this.state.buttons[buttonIndex];
   console.log(screenX, screenY, button);
    } 
   
-
 
    handleClick(i) {
     console.log(this.state.buttons[i]);
@@ -196,13 +195,11 @@ class KeyBoard extends Component{
   }
 
 
-
-  
   render() {
     this.keyInit();
 
     return (
-      <div className="container" onMouseMove={this._onMouseMove.bind(this)}>
+      <div className="container"onMouseMove={this._onMousemove.bind(this)}>
         <div className="board-row">
           {this.renderStuff()}
       </div>
