@@ -68,28 +68,28 @@ class KeyBoard extends Component{
     let x = 0;
     let widthcounter = 0;
     for(let j = 0; j < 63; j++){
-      if(j == 14 || j == 28 || j== 41 || j==52){
+      if(j == 14 || j == 28 || j== 41 || j==53){
         widthcounter = 0;
       }
-      widthcounter += this.buttonWidth(j);
       if(j==i){
         x = widthcounter;
         break;
       }
+      widthcounter += this.buttonWidth(j);
     }
     return x;
   }
 
   buttonY(i) {
     let y = 0;
-    if(i>13){
-      y = 160;
-    } else if(i>27){
-      y = 320;
+    if(i>52){
+      y = 640;
     } else if(i>40){
       y = 480;
-    } else if(i>52){
-      y = 640;
+    } else if(i>27){
+      y = 320;
+    } else if(i>13){
+      y = 160;
     }
     return y;
   }
@@ -112,8 +112,8 @@ class KeyBoard extends Component{
 		fullCoords[3] = x + width;
 		fullCoords[4] = y;
 		fullCoords[5] = y;
-		fullCoords[6] = y - height;
-		fullCoords[7] = y - height;
+		fullCoords[6] = y + height;
+		fullCoords[7] = y + height;
     this.state.grid[i] = fullCoords;
 
       return (
@@ -129,6 +129,7 @@ class KeyBoard extends Component{
     }
 
   renderStuff() {
+    console.log(this.state.grid);
     return this.state.buttons.map((item, i) => {
       let flag = false;
       if (i == 13 || i == 27 || i == 40 || i == 52) {
@@ -171,18 +172,28 @@ class KeyBoard extends Component{
 /* This portion of the code will handle the logic behind handling normal keyboard and swipe functionality. */
 
 
-/* _onMouseMove(e) {
+ _onMouseMove(e) {
   const { screenX, screenY } = e;
-  console.log(`x: ${screenX} y: ${screenY}`);
-   } */
+  let buttonIndex = this.whichButton(screenX, screenY);
+  let button = this.state.buttons[buttonIndex];
+  console.log(screenX, screenY, button);
+   } 
   
 
 
    handleClick(i) {
-    console.log("YEET U CLICKED " + this.state.buttons[i]);
+    console.log(this.state.buttons[i]);
   }
 
-
+  whichButton(x, y) {
+    for(let i = 0; i < this.state.grid.length; i++){
+      if(x >= this.state.grid[i][0] && x <= this.state.grid[i][1]){
+        if(y >= this.state.grid[i][4] && y <= this.state.grid[i][6]){
+          return i;
+        }
+      }
+    } 
+  }
 
 
 
@@ -191,14 +202,15 @@ class KeyBoard extends Component{
     this.keyInit();
 
     return (
-      <div className="container" /*onMouseMove={this._onMouseMove.bind(this)}*/>
+      <div className="container" onMouseMove={this._onMouseMove.bind(this)}>
         <div className="board-row">
           {this.renderStuff()}
       </div>
       </div>
     )
     
-}
+  }
+
 }
 
 class Project extends Component{

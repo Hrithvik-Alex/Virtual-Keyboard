@@ -25,19 +25,6 @@ export default class Button extends React.Component {
 		}
 	}
 
-	getCoords() {
-		let fullCoords = Array(8).fill(0);
-		fullCoords[0] = this.state.x;
-		fullCoords[1] = this.state.x + this.state.width;
-		fullCoords[2] = this.state.x;
-		fullCoords[3] = this.state.x + this.state.width;
-		fullCoords[4] = this.state.y;
-		fullCoords[5] = this.state.y;
-		fullCoords[6] = this.state.y - this.state.height;
-		fullCoords[7] = this.state.y - this.state.height;
-		return fullCoords;
-	}
-
 	render() {
 		const { value, onClick } = this.props;
 		let buttonStyle = {
